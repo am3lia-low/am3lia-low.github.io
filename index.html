@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amelia Low — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf8f3;
+    --paper-deep: #f1ece2;
+    --ink: #211c20;
+    --ink-soft: #4d454b;
+    --ink-faint: #8d8588;
+    --accent: #6d2f55;        /* plum / aubergine */
+    --accent-2: #5c6b50;      /* muted sage */
+    --gold: #a98a47;
+    --line: #d6cfc8;
+    --line-soft: #e4ded3;
+    --max: 1180px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Spectral', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.6;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* paper grain texture */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+
+  /* ---------- Masthead / nav ---------- */
+  header.top {
+    border-bottom: 1.5px solid var(--ink);
+    position: sticky;
+    top: 0;
+    background: rgba(244,240,232,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+  }
+  .top-inner {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 14px 32px;
+    max-width: var(--max); margin: 0 auto;
+  }
+  .top-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+  .top-name .dot { color: var(--accent); }
+  .top-nav { display: flex; gap: 26px; }
+  .top-nav a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    transition: color 0.2s;
+    position: relative;
+  }
+  .top-nav a:hover { color: var(--accent); }
+  .top-nav a::after {
+    content:""; position:absolute; left:0; bottom:-4px; width:0; height:1.5px;
+    background: var(--accent); transition: width 0.25s ease;
+  }
+  .top-nav a:hover::after { width:100%; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 90px 0 70px; position: relative; }
+  .dateline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex; gap: 14px; align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .dateline .rule { flex: 1; height: 1px; background: var(--line); min-width: 40px; }
+
+  .hero h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 400;
+    font-size: clamp(42px, 8vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 6px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .hero .sub {
+    font-family: 'Spectral', serif;
+    font-size: clamp(20px, 3vw, 29px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 760px;
+    margin-top: 26px;
+    line-height: 1.4;
+  }
+  .hero-meta {
+    margin-top: 40px;
+    display: flex; gap: 34px; flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+  }
+  .hero-meta a { border-bottom: 1.5px solid var(--accent); padding-bottom: 1px; transition: background 0.2s; }
+  .hero-meta a:hover { background: var(--accent); color: var(--paper); }
+  .hero-meta .label { color: var(--ink-faint); display:block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 3px; }
+
+  /* decorative ticker strip */
+  .ticker {
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    overflow: hidden;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .ticker-track {
+    display: flex; white-space: nowrap;
+    animation: scroll 38s linear infinite;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    padding: 9px 0;
+  }
+  .ticker-track span { padding: 0 22px; display: inline-flex; align-items: center; gap: 10px; }
+  .ticker-track .up { color: #8fc9a8; }
+  .ticker-track .tag { color: var(--gold); }
+  @keyframes scroll { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+
+  /* ---------- Section heading ---------- */
+  .sec { padding: 78px 0 10px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 18px;
+    margin-bottom: 46px;
+  }
+  .sec-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  .sec-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 500;
+    font-size: clamp(26px, 4vw, 38px);
+    letter-spacing: -0.03em;
+  }
+  .sec-rule { flex: 1; height: 1.5px; background: var(--ink); align-self: center; }
+
+  /* ---------- Projects ---------- */
+  .projects { display: flex; flex-direction: column; }
+  .proj {
+    display: grid;
+    grid-template-columns: 88px 1fr 200px;
+    gap: 30px;
+    padding: 34px 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+    transition: background 0.3s;
+    position: relative;
+  }
+  .proj:last-child { border-bottom: 1px solid var(--line); }
+  .proj::after {
+    content:""; position:absolute; left:-32px; right:-32px; top:0; bottom:0;
+    background: var(--paper-deep); opacity:0; transition: opacity 0.3s; z-index:-1;
+  }
+  .proj:hover::after { opacity: 0.6; }
+  .proj-idx {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--line);
+    line-height: 1;
+    transition: color 0.3s;
+  }
+  .proj:hover .proj-idx { color: var(--accent); }
+  .proj-body h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    margin-bottom: 4px;
+  }
+  .proj-body h3 a { transition: color 0.2s; }
+  .proj:hover .proj-body h3 a { color: var(--accent); }
+  .proj-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--accent-2); margin-bottom: 12px; display: block;
+  }
+  .proj-desc { color: var(--ink-soft); font-size: 18px; max-width: 56ch; }
+  .proj-tags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.05em;
+    padding: 3px 9px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--ink-soft);
+    background: var(--paper);
+  }
+  .proj-side { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-faint); }
+  .proj-side .stat { display:block; margin-bottom: 6px; }
+  .proj-side .stat b { color: var(--ink); font-weight: 600; }
+  .proj-side .repo {
+    display:inline-flex; align-items:center; gap:6px; margin-top: 8px;
+    border-bottom: 1.5px solid var(--ink); padding-bottom: 2px; color: var(--ink);
+    transition: all 0.2s;
+  }
+  .proj-side .repo:hover { color: var(--accent); border-color: var(--accent); gap: 10px; }
+  .proj-side .demo {
+    display:inline-flex; align-items:center; gap:6px; margin-top: 10px;
+    padding: 5px 11px; border-radius: 4px;
+    background: var(--accent); color: var(--paper);
+    font-weight: 600; letter-spacing: 0.03em;
+    transition: all 0.2s;
+  }
+  .proj-side .demo:hover { gap: 10px; filter: brightness(1.08); }
+  .proj-side .demo + .repo { margin-top: 10px; display: block; }
+
+  /* highlight pill for collab vs solo */
+  .mode {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    padding: 2px 8px; border-radius: 3px; vertical-align: middle;
+    margin-left: 10px;
+  }
+  .mode.team { background: var(--accent-2); color: var(--paper); }
+  .mode.solo { background: transparent; color: var(--accent-2); border: 1px solid var(--accent-2); }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: start; }
+  .about-lead {
+    font-family: 'Spectral', serif;
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 300;
+    line-height: 1.45;
+  }
+  .about-lead .drop {
+    float: left;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 82px;
+    line-height: 0.72;
+    font-weight: 700;
+    padding: 8px 14px 0 0;
+    color: var(--accent);
+  }
+  .about-body p { margin-bottom: 18px; color: var(--ink-soft); }
+  .about-side { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  .about-side .row { padding: 12px 0; border-bottom: 1px solid var(--line); display:flex; justify-content: space-between; gap: 16px; }
+  .about-side .row:first-child { border-top: 1px solid var(--ink); }
+  .about-side .k { color: var(--ink-faint); text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em; }
+  .about-side .v { color: var(--ink); text-align: right; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 90px;
+    border-top: 1.5px solid var(--ink);
+    padding: 60px 0 50px;
+  }
+  .foot-grid { display:flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+  .foot-cta {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 54px);
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+  }
+  .foot-cta em { font-family: 'Spectral', serif; font-style: italic; font-weight: 400; color: var(--accent); }
+  .foot-links { display:flex; flex-direction: column; gap: 10px; font-family:'JetBrains Mono',monospace; font-size: 13px; text-align: right;}
+  .foot-links a { border-bottom: 1.5px solid transparent; transition: border 0.2s; padding-bottom: 2px; }
+  .foot-links a:hover { border-color: var(--accent); }
+  .foot-links .placeholder { color: var(--ink-faint); font-style: italic; }
+  .colophon {
+    margin-top: 46px; padding-top: 18px; border-top: 1px solid var(--line);
+    font-family:'JetBrains Mono',monospace; font-size: 11px; color: var(--ink-faint);
+    display:flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* reveal animation */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* hero staggered load */
+  .hero .dateline, .hero h1, .hero .sub, .hero .hero-meta { opacity:0; animation: rise 0.9s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero .dateline { animation-delay: 0.05s; }
+  .hero h1 { animation-delay: 0.18s; }
+  .hero .sub { animation-delay: 0.34s; }
+  .hero .hero-meta { animation-delay: 0.5s; }
+  @keyframes rise { from { opacity:0; transform: translateY(28px);} to {opacity:1; transform:none;} }
+
+  @media (max-width: 860px) {
+    body { font-size: 17px; }
+    .top-nav { display: none; }
+    .proj { grid-template-columns: 54px 1fr; }
+    .proj-side { grid-column: 2; text-align: left; margin-top: 8px; }
+    .proj-side .repo { margin-top: 4px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .proj-idx { font-size: 30px; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 0 20px; }
+    .top-inner { padding: 12px 20px; }
+    .hero { padding: 56px 0 50px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="top-name">Amelia Low<span class="dot">.</span></div>
+    <nav class="top-nav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div class="dateline">
+    <span>Portfolio &mdash; Vol. I</span>
+    <span class="rule"></span>
+    <span>AI / ML &middot; Quant Finance</span>
+  </div>
+  <h1>Models that <em>reason</em><br>about markets &amp; meaning.</h1>
+  <p class="sub">Building machine-learning systems where finance meets language &mdash; from Fed-policy retrieval and risk forecasting to the occasional desktop cat. Rigorous where it counts, playful where it pays.</p>
+  <div class="hero-meta">
+    <div><span class="label">Focus</span>AI Engineering &amp; Quantitative ML</div>
+    <div><span class="label">Currently</span>NUS Data Science Graduate</div>
+    <div><span class="label">Find me</span><a href="https://github.com/am3lia-low" target="_blank" rel="noopener">github.com/am3lia-low</a></div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track" id="ticker">
+    <span class="tag">RAG</span><span class="up">▲ grounded</span>
+    <span class="tag">LSTM</span><span class="up">▲ covariance</span>
+    <span class="tag">FinBERT</span><span>vs RoBERTa</span>
+    <span class="tag">DCC-GARCH</span><span class="up">▲ vol</span>
+    <span class="tag">Gemini</span><span>agents</span>
+    <span class="tag">XGBoost</span><span class="up">▲ Sharpe</span>
+    <span class="tag">Electron</span><span>🐈‍⬛ the cat</span>
+    <span class="tag">Remotion</span><span>video essays</span>
+    <span class="tag">CMVO</span><span class="up">▲ portfolios</span>
+    <span class="tag">FOMC</span><span>hawkish/dovish</span>
+  </div>
+</div>
+
+<main>
+<section class="sec wrap" id="work">
+  <div class="sec-head reveal">
+    <span class="sec-num">§ 01</span>
+    <h2 class="sec-title">Selected Work</h2>
+    <span class="sec-rule"></span>
+  </div>
+
+  <div class="projects">
+
+    <!-- 1 -->
+    <article class="proj reveal">
+      <div class="proj-idx">01</div>
+      <div class="proj-body">
+        <span class="proj-kicker">Agentic AI · Quant Finance</span>
+        <h3><a href="https://github.com/am3lia-low/Portfolio-Risk-Analyst-Chatbot" target="_blank" rel="noopener">Portfolio Risk Analyst Chatbot<span class="mode team">Team</span></a></h3>
+        <p class="proj-desc">An AI agent that analyses a portfolio end-to-end: it classifies user intent, computes risk metrics (VaR, CVaR, Sharpe, Sortino, beta, HHI), runs a neural-net risk classifier and an LSTM volatility forecast, then grounds its explanation in a 4-base RAG knowledge store — with a hallucination guard that checks every number before it reaches you.</p>
+        <div class="proj-tags">
+          <span class="tag">Gemini 2.5</span><span class="tag">Streamlit</span><span class="tag">RAG</span><span class="tag">LSTM</span><span class="tag">yfinance</span><span class="tag">Neural Net</span>
+        </div>
+      </div>
+      <div class="proj-side">
+        <span class="stat"><b>5-step</b> orchestrator</span>
+        <span class="stat"><b>4</b> vector KBs</span>
+        <a class="demo" href="https://portfolio-risk-analyst-chatbot.streamlit.app/" target="_blank" rel="noopener">◆ Live demo →</a>
+        <a class="repo" href="https://github.com/am3lia-low/Portfolio-Risk-Analyst-Chatbot" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="proj reveal">
+      <div class="proj-idx">02</div>
+      <div class="proj-body">
+        <span class="proj-kicker">NLP Research · Central Bank Text</span>
+        <h3><a href="https://github.com/am3lia-low/battle-of-BERTS-FOMC" target="_blank" rel="noopener">Battle of the BERTs<span class="mode solo">Solo</span></a></h3>
+        <p class="proj-desc">FinBERT vs RoBERTa-large on classifying FOMC statements as hawkish, dovish, or neutral. Replicates the <em>Trillion Dollar Words</em> finding that the larger general-purpose model wins — then digs into <em>why</em> financial-domain pre-training underperforms on central-bank language: a register mismatch between corporate finance and Fed-speak.</p>
+        <div class="proj-tags">
+          <span class="tag">FinBERT</span><span class="tag">RoBERTa</span><span class="tag">HuggingFace</span><span class="tag">Transformers</span><span class="tag">Zero-shot</span>
+        </div>
+      </div>
+      <div class="proj-side">
+        <span class="stat">RoBERTa F1 <b>0.71</b></span>
+        <span class="stat">2,476 sentences</span>
+        <a class="repo" href="https://github.com/am3lia-low/battle-of-BERTS-FOMC" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="proj reveal">
+      <div class="proj-idx">03</div>
+      <div class="proj-body">
+        <span class="proj-kicker">Quant ML · Portfolio Optimisation</span>
+        <h3><a href="https://github.com/am3lia-low/optimising-dynamic-crypto-portfolio" target="_blank" rel="noopener">Dynamic Crypto Portfolio Optimiser<span class="mode team">Team</span></a></h3>
+        <p class="proj-desc">A full research pipeline asking how temporal features and correlation structure can optimise a dynamic crypto portfolio. Pairs return-forecasting models (XGBoost variants, ARIMA) with covariance forecasters (DCC-GARCH, LSTM) inside a Constrained Mean-Variance Optimiser, rebalancing weekly across 8 coins and benchmarked against 1/N and statistical MV.</p>
+        <div class="proj-tags">
+          <span class="tag">XGBoost</span><span class="tag">DCC-GARCH</span><span class="tag">LSTM</span><span class="tag">ARIMA</span><span class="tag">Optuna</span><span class="tag">TensorFlow</span>
+        </div>
+      </div>
+      <div class="proj-side">
+        <span class="stat"><b>10</b> portfolios</span>
+        <span class="stat">Sharpe · Sortino · Calmar</span>
+        <a class="repo" href="https://github.com/am3lia-low/optimising-dynamic-crypto-portfolio" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="proj reveal">
+      <div class="proj-idx">04</div>
+      <div class="proj-body">
+        <span class="proj-kicker">RAG · Retrieval Systems</span>
+        <h3><a href="https://github.com/am3lia-low/FOMC-rag-pipeline" target="_blank" rel="noopener">FOMC RAG Pipeline<span class="mode solo">Solo</span></a></h3>
+        <p class="proj-desc">Ask a natural-language question about Fed monetary policy and get a grounded, context-aware answer. Retrieves relevant passages from FOMC minutes and statements (2020–2025) — spanning the COVID response, the historic tightening cycle, and the subsequent rate cuts — and generates answers anchored to the source text.</p>
+        <div class="proj-tags">
+          <span class="tag">RAG</span><span class="tag">Embeddings</span><span class="tag">Vector Search</span><span class="tag">Monetary Policy</span>
+        </div>
+      </div>
+      <div class="proj-side">
+        <span class="stat"><b>2020–2025</b> corpus</span>
+        <span class="stat">grounded answers</span>
+        <a class="repo" href="https://github.com/am3lia-low/FOMC-rag-pipeline" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="proj reveal">
+      <div class="proj-idx">05</div>
+      <div class="proj-body">
+        <span class="proj-kicker">Hackathon · Desktop Agent</span>
+        <h3><a href="https://github.com/am3lia-low/myko-ai-engineer-hackathon" target="_blank" rel="noopener">The Cat — a desktop companion<span class="mode team">Team</span></a></h3>
+        <p class="proj-desc">A small, round, black cat that lives on your desktop. Mostly she just watches quietly — but when she notices you reading a PDF or replying to email, she shifts into a context copilot, offering a quick summary or draft reply. Two cognition loops, a seven-sprite state machine, persistent memory across sessions, and optional voice. Built in a 3-hour hackathon.</p>
+        <div class="proj-tags">
+          <span class="tag">Electron</span><span class="tag">Gemini Vision</span><span class="tag">ElevenLabs</span><span class="tag">AppleScript</span><span class="tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="proj-side">
+        <span class="stat"><b>3-hr</b> build</span>
+        <span class="stat">7-sprite state machine</span>
+        <a class="repo" href="https://github.com/am3lia-low/myko-ai-engineer-hackathon" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="proj reveal">
+      <div class="proj-idx">06</div>
+      <div class="proj-body">
+        <span class="proj-kicker">GenAI Pipeline · Media</span>
+        <h3><a href="https://github.com/am3lia-low/ebook-to-vid-essay" target="_blank" rel="noopener">Ebook → Video Essayist<span class="mode solo">Solo</span></a></h3>
+        <p class="proj-desc">Turns books into opinionated short video essays — one episode per unit (a law of <em>48 Laws of Power</em>, a chapter of <em>Art of War</em>). A four-stage pipeline (script → validate → audio → images → video) with a fixed six-beat narrative skeleton, a persona-driven host, and a running tier-list that updates across a season.</p>
+        <div class="proj-tags">
+          <span class="tag">Gemini</span><span class="tag">OpenAI</span><span class="tag">ElevenLabs</span><span class="tag">Fal</span><span class="tag">Remotion</span><span class="tag">Exa</span>
+        </div>
+      </div>
+      <div class="proj-side">
+        <span class="stat"><b>5-stage</b> pipeline</span>
+        <span class="stat">script → MP4</span>
+        <a class="repo" href="https://github.com/am3lia-low/ebook-to-vid-essay" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="proj reveal">
+      <div class="proj-idx">07</div>
+      <div class="proj-body">
+        <span class="proj-kicker">GenAI · Full-Stack · For Fun</span>
+        <h3><a href="https://github.com/am3lia-low/genai-quiz-platform" target="_blank" rel="noopener">Quizzle — AI quiz platform<span class="mode solo">Solo</span></a></h3>
+        <p class="proj-desc">A BuzzFeed-style quiz platform that generates personality and trivia quizzes on the fly. Discovers trending topics via Google Trends, writes quizzes with Gemini, generates cover art with Pollinations.ai, and tracks aggregate "X% of people got this result" stats. A Node + Python + SQLite build, made while having fun with GenAI.</p>
+        <div class="proj-tags">
+          <span class="tag">Gemini</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">pytrends</span><span class="tag">Express</span>
+        </div>
+      </div>
+      <div class="proj-side">
+        <span class="stat">2 quiz engines</span>
+        <span class="stat">trend-driven</span>
+        <a class="repo" href="https://github.com/am3lia-low/genai-quiz-platform" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="sec wrap" id="about">
+  <div class="sec-head reveal">
+    <span class="sec-num">§ 02</span>
+    <h2 class="sec-title">About</h2>
+    <span class="sec-rule"></span>
+  </div>
+  <div class="about-grid">
+    <div class="about-content reveal">
+      <p class="about-lead"><span class="drop">I</span> work where machine learning meets markets and language — building systems that don't just predict, but explain themselves.</p>
+      <div class="about-body" style="margin-top:28px;">
+        <p>Most of my recent work lives at the intersection of <strong>quantitative finance and NLP</strong>: forecasting portfolio risk, classifying central-bank sentiment, retrieving grounded answers from Fed documents, and optimising portfolios with deep covariance models. I care a lot about the unglamorous parts — hallucination guards, reproducibility, cheap-first pipelines, and benchmarks you can actually trust.</p>
+        <p>But I also build for the joy of it. A desktop cat that summarises your PDFs. A quiz generator that runs on trending topics. A pipeline that turns books into video essays. The playful projects keep the rigorous ones honest.</p>
+      </div>
+    </div>
+    <aside class="about-side reveal">
+      <div class="row"><span class="k">Domains</span><span class="v">Quant ML · NLP · RAG</span></div>
+      <div class="row"><span class="k">Languages</span><span class="v">Python · JS · Swift</span></div>
+      <div class="row"><span class="k">ML Stack</span><span class="v">PyTorch · TF · Transformers</span></div>
+      <div class="row"><span class="k">LLM / Agents</span><span class="v">Gemini · OpenAI · RAG</span></div>
+      <div class="row"><span class="k">Quant</span><span class="v">GARCH · ARIMA · XGBoost</span></div>
+      <div class="row"><span class="k">Builds</span><span class="v">Streamlit · Electron · Remotion</span></div>
+    </aside>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-cta reveal">Let's build something<br><em>worth shipping.</em></div>
+      <div class="foot-links reveal">
+        <a href="https://github.com/am3lia-low" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/amelia-low-2a24a32a0/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="mailto:amelia.low@gmail.com">amelia.low@gmail.com ↗</a>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© 2026 Amelia Low — All rights reserved</span>
+      <span>Set in Bricolage Grotesque &amp; Spectral · Built by hand</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // duplicate ticker content for seamless loop
+  const t = document.getElementById('ticker');
+  t.innerHTML += t.innerHTML;
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
