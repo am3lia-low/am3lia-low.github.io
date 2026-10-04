@@ -293,6 +293,23 @@
   .card-links a:hover { color: var(--accent); border-color: var(--accent); }
   .card-links a.live { color: var(--accent); border-color: var(--accent); font-weight: 600; }
 
+  /* ---------- Toolkit ---------- */
+  .kit { display: grid; grid-template-columns: repeat(2, 1fr); gap: 34px 56px; }
+  .kit-group h3 {
+    font-family: 'JetBrains Mono', monospace; font-weight: 500;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--accent); padding-bottom: 10px; border-bottom: 1.5px solid var(--ink);
+  }
+  .kit-group ul { list-style: none; }
+  .kit-group li {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 18px;
+    padding: 9px 0; border-bottom: 1px solid var(--line);
+  }
+  .kit-group .pkg { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 16.5px; letter-spacing: -0.01em; white-space: nowrap; }
+  .kit-group .used { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--ink-faint); text-align: right; }
+  .sec-intro code { font-family: 'JetBrains Mono', monospace; font-size: 0.82em; font-style: normal; }
+  .card .proj-tags { margin-top: 2px; }
+
   /* ---------- About ---------- */
   .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: start; }
   .about-lead {
@@ -365,12 +382,15 @@
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .proj-idx { font-size: 30px; }
     .cards { grid-template-columns: 1fr; }
+    .kit { grid-template-columns: 1fr; }
   }
   @media (max-width: 520px) {
     .wrap { padding: 0 20px; }
     .top-inner { padding: 12px 20px; }
     .hero { padding-top: 56px; padding-bottom: 50px; }
     .card { padding: 22px 20px; }
+    .kit-group li { flex-direction: column; gap: 2px; }
+    .kit-group .used { text-align: left; }
   }
 </style>
 </head>
@@ -383,6 +403,7 @@
       <a href="#work">Work</a>
       <a href="#research">Research</a>
       <a href="#web">Web</a>
+      <a href="#toolkit">Toolkit</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -438,7 +459,7 @@
         <h3><a href="https://github.com/am3lia-low/bojji" target="_blank" rel="noopener">Bojji — calibrated triage for citizen email<span class="mode solo">Solo</span></a></h3>
         <p class="proj-desc">A triage agent for a tax authority's income-tax inbox. Emails are PII-scrubbed locally, classified by a fine-tuned MiniLM into 10 intents, calibrated, and matched to the relevant SOP &mdash; then either drafted with Gemini or sent to an officer with a clear reason. The point isn't drafting; it's <em>knowing when not to draft</em>. LangGraph makes the safety gate structural: escalated emails have no edge to the drafting node.</p>
         <div class="proj-tags">
-          <span class="tag">LangGraph</span><span class="tag">MiniLM</span><span class="tag">Gemini</span><span class="tag">Calibration</span><span class="tag">Streamlit</span><span class="tag">Docker</span>
+          <span class="tag">LangGraph</span><span class="tag">Transformers</span><span class="tag">PyTorch</span><span class="tag">Google GenAI SDK</span><span class="tag">scikit-learn</span><span class="tag">Pydantic</span><span class="tag">Streamlit</span><span class="tag">Docker</span>
         </div>
       </div>
       <div class="proj-side">
@@ -458,7 +479,7 @@
         <h3><a href="https://github.com/donavanyieh/DYWA_prod" target="_blank" rel="noopener">Adaptive Healing Engine<span class="mode team">Team</span></a></h3>
         <p class="proj-desc">A self-healing loop for web apps. Five LLM-driven browser personas &mdash; flow, pricing, contract, security, data integrity &mdash; click through a shopping app like real users and flag inconsistencies from what they see on screen, with no bug oracle. A verifier agent reviews their evidence, a sandboxed fixing agent patches confirmed bugs and adds regression tests, and a dashboard replays every run's screenshots, decisions and fixes.</p>
         <div class="proj-tags">
-          <span class="tag">GPT-5</span><span class="tag">Playwright</span><span class="tag">FastAPI</span><span class="tag">Agent orchestration</span><span class="tag">pytest</span>
+          <span class="tag">OpenAI SDK</span><span class="tag">Playwright</span><span class="tag">FastAPI</span><span class="tag">Pydantic</span><span class="tag">pytest</span><span class="tag">httpx</span>
         </div>
       </div>
       <div class="proj-side">
@@ -473,11 +494,11 @@
     <article class="proj reveal">
       <div class="proj-idx">03</div>
       <div class="proj-body">
-        <span class="proj-kicker">Hackathon · GenAI · 3D</span>
+        <span class="proj-kicker">Garena AI Build Challenge 2026 · GenAI · 3D</span>
         <h3><a href="https://github.com/am3lia-low/3D-ywa" target="_blank" rel="noopener">3D-YWA — step into the story you're reading<span class="mode team">Team</span></a></h3>
         <p class="proj-desc">Turns ordinary prose into a persistent, explorable 3D setting. Each passage produces a <em>patch</em> to the world rather than a fresh scene, so the desk in chapter three is the same desk from chapter one &mdash; moved only because the story moved it. Objects appear only when the text supports them, contradictions are recorded instead of overwritten, and every object carries its provenance. I built the narrative engine that extracts places, objects and relations from the text, and wired it through the shared contract into the React Three Fiber renderer.</p>
         <div class="proj-tags">
-          <span class="tag">GPT-5.6</span><span class="tag">FastAPI</span><span class="tag">React Three Fiber</span><span class="tag">TypeScript</span><span class="tag">JSON Schema</span>
+          <span class="tag">OpenAI SDK</span><span class="tag">FastAPI</span><span class="tag">Pydantic</span><span class="tag">React Three Fiber</span><span class="tag">three.js</span><span class="tag">Zod</span><span class="tag">Vite</span><span class="tag">Vitest</span>
         </div>
       </div>
       <div class="proj-side">
@@ -495,7 +516,7 @@
         <h3><a href="https://github.com/am3lia-low/Portfolio-Risk-Analyst-Chatbot" target="_blank" rel="noopener">Portfolio Risk Analyst Chatbot<span class="mode team">Team</span></a></h3>
         <p class="proj-desc">An AI agent that analyses an investment portfolio end-to-end: it classifies user intent, computes risk metrics, runs a neural-net risk classifier and an LSTM volatility forecast, then grounds its explanation in a 4-base RAG knowledge store &mdash; with a hallucination guard that checks every number before it reaches you.</p>
         <div class="proj-tags">
-          <span class="tag">Gemini 2.5</span><span class="tag">Streamlit</span><span class="tag">RAG</span><span class="tag">LSTM</span><span class="tag">Neural Net</span>
+          <span class="tag">Google GenAI SDK</span><span class="tag">ChromaDB</span><span class="tag">sentence-transformers</span><span class="tag">rank-bm25</span><span class="tag">PyTorch</span><span class="tag">Streamlit</span><span class="tag">yfinance</span><span class="tag">fredapi</span>
         </div>
       </div>
       <div class="proj-side">
@@ -514,7 +535,7 @@
         <h3><a href="https://github.com/am3lia-low/myko-ai-engineer-hackathon" target="_blank" rel="noopener">Project Myko — desktop cat companion<span class="mode team">Team</span></a></h3>
         <p class="proj-desc">A small, round, black cat that lives on your desktop. Mostly she just watches quietly &mdash; but when she notices you reading a PDF or replying to email, she shifts into a context copilot, offering a quick summary or draft reply. Two cognition loops, a seven-sprite state machine, persistent memory across sessions, and optional voice. Built in a 3-hour hackathon.</p>
         <div class="proj-tags">
-          <span class="tag">Electron</span><span class="tag">Gemini Vision</span><span class="tag">ElevenLabs</span><span class="tag">AppleScript</span><span class="tag">JavaScript</span>
+          <span class="tag">Electron</span><span class="tag">Gemini SDK</span><span class="tag">ElevenLabs API</span><span class="tag">Swift</span><span class="tag">AppleScript</span>
         </div>
       </div>
       <div class="proj-side">
@@ -532,7 +553,7 @@
         <h3><a href="https://github.com/am3lia-low/ebook-to-vid-essay" target="_blank" rel="noopener">Ebook → Video Essayist<span class="mode solo">Solo</span></a></h3>
         <p class="proj-desc">Turns books into opinionated short video essays &mdash; one episode per unit (a law of <em>48 Laws of Power</em>, a chapter of <em>Art of War</em>). A staged pipeline (script → validate → audio → images → video) with a fixed six-beat narrative skeleton, a persona-driven host, and a running tier-list that updates across a season.</p>
         <div class="proj-tags">
-          <span class="tag">Gemini</span><span class="tag">OpenAI</span><span class="tag">ElevenLabs</span><span class="tag">Fal</span><span class="tag">Remotion</span><span class="tag">Exa</span>
+          <span class="tag">Google GenAI SDK</span><span class="tag">Anthropic SDK</span><span class="tag">Exa</span><span class="tag">ElevenLabs API</span><span class="tag">Fal</span>
         </div>
       </div>
       <div class="proj-side">
@@ -550,7 +571,7 @@
         <h3><a href="https://github.com/am3lia-low/genai-quiz-platform" target="_blank" rel="noopener">Quizzle — AI quiz platform<span class="mode solo">Solo</span></a></h3>
         <p class="proj-desc">A BuzzFeed-style quiz platform that generates personality and trivia quizzes on the fly. Discovers trending topics via Google Trends, writes quizzes with Gemini, generates cover art with Pollinations.ai, and tracks aggregate "X% of people got this result" stats.</p>
         <div class="proj-tags">
-          <span class="tag">Gemini</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">pytrends</span><span class="tag">Express</span>
+          <span class="tag">Google GenAI SDK</span><span class="tag">pytrends</span><span class="tag">Express</span><span class="tag">sql.js</span><span class="tag">Node.js</span>
         </div>
       </div>
       <div class="proj-side">
@@ -575,25 +596,29 @@
     <article class="card">
       <span class="proj-kicker">RAG · Retrieval</span>
       <h3>FOMC RAG Pipeline<span class="mode solo">Solo</span></h3>
-      <p>Ask a natural-language question about Fed policy and get an answer grounded in FOMC minutes and statements from 2020&ndash;2025.</p>
+      <p>Hybrid retrieval (FAISS + BM25, fused with RRF) over FOMC minutes and statements from 2020&ndash;2025, feeding a 4-bit Mistral 7B &mdash; evaluated with ROUGE and a Claude LLM-as-judge.</p>
+      <div class="proj-tags"><span class="tag">FAISS</span><span class="tag">rank-bm25</span><span class="tag">sentence-transformers</span><span class="tag">bitsandbytes</span><span class="tag">Anthropic SDK</span></div>
       <div class="card-links"><a href="https://github.com/am3lia-low/FOMC-rag-pipeline" target="_blank" rel="noopener">Repo →</a></div>
     </article>
     <article class="card">
       <span class="proj-kicker">NLP · Model Comparison</span>
       <h3>Battle of the BERTs<span class="mode solo">Solo</span></h3>
       <p>FinBERT vs RoBERTa-large on hawkish/dovish stance classification &mdash; and why domain pre-training lost to the bigger general model (F1 0.71).</p>
+      <div class="proj-tags"><span class="tag">Transformers</span><span class="tag">PyTorch</span><span class="tag">HF Datasets</span><span class="tag">scikit-learn</span><span class="tag">Anthropic SDK</span></div>
       <div class="card-links"><a href="https://github.com/am3lia-low/battle-of-BERTS-FOMC" target="_blank" rel="noopener">Repo →</a></div>
     </article>
     <article class="card">
       <span class="proj-kicker">Datathon · Segmentation · GenAI</span>
       <h3>NUS Datathon 2026 — Company Intelligence<span class="mode team">Team</span></h3>
       <p>Segments 8.5k companies with K-Means, flags outliers with Isolation Forest, benchmarks IT spend against peers, and writes executive briefings with a fine-tuned FLAN-T5.</p>
+      <div class="proj-tags"><span class="tag">Transformers</span><span class="tag">scikit-learn</span><span class="tag">Streamlit</span><span class="tag">Plotly</span></div>
       <div class="card-links"><a href="https://github.com/am3lia-low/NUS-Datathon-2026-Group-6" target="_blank" rel="noopener">Repo →</a><a href="https://huggingface.co/am3lia-low/nus-datathon-group-6-flan-t5-finetuned-model" target="_blank" rel="noopener">Model →</a></div>
     </article>
     <article class="card">
       <span class="proj-kicker">Time Series · Optimisation</span>
       <h3>Dynamic Crypto Portfolio<span class="mode team">Team</span></h3>
       <p>Pairs XGBoost/ARIMA forecasts with DCC-GARCH and LSTM covariance models inside a constrained optimiser, rebalanced weekly across 8 coins.</p>
+      <div class="proj-tags"><span class="tag">XGBoost</span><span class="tag">arch</span><span class="tag">statsmodels</span><span class="tag">TensorFlow</span><span class="tag">Optuna</span></div>
       <div class="card-links"><a href="https://github.com/am3lia-low/optimising-dynamic-crypto-portfolio" target="_blank" rel="noopener">Repo →</a></div>
     </article>
   </div>
@@ -612,32 +637,106 @@
       <span class="proj-kicker">Data Viz · Next.js</span>
       <h3>HDB Million-Dollar Dashboard</h3>
       <p>In 2017, 46 HDB flats resold for over $1M; in 2025, 1,593 did. An interactive map and timeline of where it's spreading, built on a Python pipeline over data.gov.sg.</p>
+      <div class="proj-tags"><span class="tag">Next.js</span><span class="tag">Tailwind</span><span class="tag">Recharts</span><span class="tag">react-simple-maps</span><span class="tag">pandas</span></div>
       <div class="card-links"><a class="live" href="https://hdb-million-dollar-dashboard.vercel.app" target="_blank" rel="noopener">◆ Live →</a><a href="https://github.com/am3lia-low/hdb-million-dollar-dashboard" target="_blank" rel="noopener">Repo →</a></div>
     </article>
     <article class="card">
       <span class="proj-kicker">Analytics · Next.js</span>
       <h3>TikTok Shop Profit Dashboard</h3>
       <p>A narrative seller dashboard that shows what a shop actually keeps after platform fees, ads and returns &mdash; not just gross sales.</p>
+      <div class="proj-tags"><span class="tag">Next.js</span><span class="tag">Recharts</span><span class="tag">TypeScript</span></div>
       <div class="card-links"><a class="live" href="https://tiktok-shop-dashboard-inky.vercel.app" target="_blank" rel="noopener">◆ Live →</a><a href="https://github.com/am3lia-low/tiktok-shop-dashboard" target="_blank" rel="noopener">Repo →</a></div>
     </article>
     <article class="card">
       <span class="proj-kicker">Web · AI Chat Assistant</span>
       <h3>Tampines Family Dental</h3>
       <p>A demo site for a fictional neighbourhood clinic, with a Claude-powered assistant that answers questions about services, prices, hours and location.</p>
+      <div class="proj-tags"><span class="tag">Next.js</span><span class="tag">Anthropic SDK</span><span class="tag">Tailwind</span></div>
       <div class="card-links"><a class="live" href="https://tampines-family-dental.vercel.app" target="_blank" rel="noopener">◆ Live →</a><a href="https://github.com/am3lia-low/tampines-family-dental" target="_blank" rel="noopener">Repo →</a></div>
     </article>
     <article class="card">
       <span class="proj-kicker">Web · Landing Page</span>
       <h3>Bishan Bright Learners</h3>
       <p>A warm, parent-friendly landing page for a primary-school tuition centre in Bishan &mdash; English, Maths, Science and Chinese, in small classes.</p>
+      <div class="proj-tags"><span class="tag">Next.js</span><span class="tag">Tailwind</span><span class="tag">Radix UI</span><span class="tag">React Hook Form</span><span class="tag">Zod</span></div>
       <div class="card-links"><a class="live" href="https://bishan-bright-learners-landing-page.vercel.app" target="_blank" rel="noopener">◆ Live →</a><a href="https://github.com/am3lia-low/Bishan-Bright-Learners" target="_blank" rel="noopener">Repo →</a></div>
     </article>
   </div>
 </section>
 
-<section class="sec wrap" id="about">
+<section class="sec wrap" id="toolkit">
   <div class="sec-head reveal">
     <span class="sec-num">§ 04</span>
+    <h2 class="sec-title">Toolkit</h2>
+    <span class="sec-rule"></span>
+  </div>
+  <p class="sec-intro reveal">The packages behind the projects above &mdash; taken from each repo's <code>requirements.txt</code> and <code>package.json</code>, with where I've used them.</p>
+  <div class="kit reveal">
+    <div class="kit-group">
+      <h3>LLM &amp; Agent SDKs</h3>
+      <ul>
+        <li><span class="pkg">LangGraph</span><span class="used">Bojji</span></li>
+        <li><span class="pkg">OpenAI SDK</span><span class="used">Healing Engine · 3D-YWA · Bojji</span></li>
+        <li><span class="pkg">Google GenAI SDK</span><span class="used">Bojji · Risk Chatbot · Ebook · Quizzle · Myko</span></li>
+        <li><span class="pkg">Anthropic SDK</span><span class="used">Dental · Ebook · FOMC RAG · BERTs</span></li>
+        <li><span class="pkg">Groq</span><span class="used">Bojji (eval judge)</span></li>
+        <li><span class="pkg">Exa</span><span class="used">Ebook</span></li>
+        <li><span class="pkg">ElevenLabs API</span><span class="used">Myko · Ebook</span></li>
+      </ul>
+    </div>
+    <div class="kit-group">
+      <h3>Retrieval &amp; NLP</h3>
+      <ul>
+        <li><span class="pkg">Transformers</span><span class="used">Bojji · BERTs · FOMC RAG · Datathon · Risk Chatbot</span></li>
+        <li><span class="pkg">sentence-transformers</span><span class="used">FOMC RAG · Risk Chatbot</span></li>
+        <li><span class="pkg">FAISS</span><span class="used">FOMC RAG</span></li>
+        <li><span class="pkg">ChromaDB</span><span class="used">Risk Chatbot</span></li>
+        <li><span class="pkg">rank-bm25</span><span class="used">FOMC RAG · Risk Chatbot</span></li>
+        <li><span class="pkg">bitsandbytes · accelerate</span><span class="used">FOMC RAG · Datathon</span></li>
+        <li><span class="pkg">HF Datasets</span><span class="used">FOMC RAG · BERTs</span></li>
+      </ul>
+    </div>
+    <div class="kit-group">
+      <h3>ML &amp; Data</h3>
+      <ul>
+        <li><span class="pkg">PyTorch</span><span class="used">Bojji · BERTs · FOMC RAG · Datathon · Risk Chatbot</span></li>
+        <li><span class="pkg">scikit-learn</span><span class="used">Bojji · BERTs · Datathon</span></li>
+        <li><span class="pkg">TensorFlow · Keras</span><span class="used">Crypto Portfolio</span></li>
+        <li><span class="pkg">XGBoost</span><span class="used">Crypto Portfolio</span></li>
+        <li><span class="pkg">arch · statsmodels</span><span class="used">Crypto Portfolio</span></li>
+        <li><span class="pkg">Optuna</span><span class="used">Crypto Portfolio</span></li>
+        <li><span class="pkg">pandas · NumPy</span><span class="used">most projects</span></li>
+      </ul>
+    </div>
+    <div class="kit-group">
+      <h3>Apps, Web &amp; 3D</h3>
+      <ul>
+        <li><span class="pkg">FastAPI</span><span class="used">Healing Engine · 3D-YWA</span></li>
+        <li><span class="pkg">Streamlit</span><span class="used">Bojji · Risk Chatbot · Datathon</span></li>
+        <li><span class="pkg">Next.js · React</span><span class="used">HDB · TikTok · Dental · Bishan</span></li>
+        <li><span class="pkg">React Three Fiber · three.js</span><span class="used">3D-YWA</span></li>
+        <li><span class="pkg">Tailwind CSS</span><span class="used">HDB · Dental · Bishan</span></li>
+        <li><span class="pkg">Recharts · Plotly</span><span class="used">HDB · TikTok · Datathon</span></li>
+        <li><span class="pkg">Electron</span><span class="used">Myko</span></li>
+      </ul>
+    </div>
+    <div class="kit-group">
+      <h3>Quality &amp; Tooling</h3>
+      <ul>
+        <li><span class="pkg">Pydantic · Zod</span><span class="used">Bojji · Healing Engine · 3D-YWA · Bishan</span></li>
+        <li><span class="pkg">Playwright</span><span class="used">Healing Engine</span></li>
+        <li><span class="pkg">pytest · Vitest</span><span class="used">Bojji · Healing Engine · 3D-YWA</span></li>
+        <li><span class="pkg">ruff · mypy</span><span class="used">Bojji</span></li>
+        <li><span class="pkg">Docker</span><span class="used">Bojji</span></li>
+        <li><span class="pkg">Vercel</span><span class="used">HDB · TikTok · Dental · Bishan</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" id="about">
+  <div class="sec-head reveal">
+    <span class="sec-num">§ 05</span>
     <h2 class="sec-title">About</h2>
     <span class="sec-rule"></span>
   </div>
@@ -673,7 +772,7 @@
     </div>
     <div class="colophon">
       <span>© 2026 Amelia Low — All rights reserved</span>
-      <span>Set in Bricolage Grotesque &amp; Spectral · Built by hand</span>
+      <span>Set in Bricolage Grotesque &amp; Spectral</span>
     </div>
   </div>
 </footer>
