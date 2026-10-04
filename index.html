@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="color-scheme: dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +10,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #faf8f3;
-    --paper-deep: #f1ece2;
-    --ink: #211c20;
-    --ink-soft: #4d454b;
-    --ink-faint: #8d8588;
-    --accent: #6d2f55;        /* plum / aubergine */
-    --accent-2: #5c6b50;      /* muted sage */
-    --gold: #a98a47;
-    --line: #d6cfc8;
-    --line-soft: #e4ded3;
+    --paper: #120d16;
+    --paper-deep: #1d1623;
+    --ink: #d8cdd6;           /* soft lavender-grey, not pure white */
+    --ink-soft: #aa9eab;
+    --ink-faint: #7a6e7e;
+    --accent: #d39bbd;        /* plum, lifted for dark bg */
+    --accent-2: #9fb190;      /* muted sage */
+    --gold: #cbaa68;
+    --line: #33283a;
+    --line-soft: #221a28;
     --max: 1180px;
   }
 
@@ -47,7 +47,7 @@
     z-index: 1;
     opacity: 0.4;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-    mix-blend-mode: multiply;
+    mix-blend-mode: screen;
   }
 
   ::selection { background: var(--accent); color: var(--paper); }
@@ -61,7 +61,7 @@
     border-bottom: 1.5px solid var(--ink);
     position: sticky;
     top: 0;
-    background: rgba(244,240,232,0.92);
+    background: rgba(18,13,22,0.88);
     backdrop-filter: blur(8px);
     z-index: 50;
   }
@@ -153,6 +153,7 @@
   }
   .ticker-track {
     display: flex; white-space: nowrap;
+    width: max-content;
     animation: scroll 38s linear infinite;
     font-family: 'JetBrains Mono', monospace;
     font-size: 12.5px;
@@ -204,7 +205,7 @@
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 38px;
     font-weight: 300;
-    color: var(--line);
+    color: var(--ink);
     line-height: 1;
     transition: color 0.3s;
   }
@@ -457,7 +458,7 @@
       <div class="proj-body">
         <span class="proj-kicker">Agentic AI · Safety · Evaluation</span>
         <h3><a href="https://github.com/am3lia-low/bojji" target="_blank" rel="noopener">Bojji — calibrated triage for citizen email<span class="mode solo">Solo</span></a></h3>
-        <p class="proj-desc">A triage agent for a tax authority's income-tax inbox. Emails are PII-scrubbed locally, classified by a fine-tuned MiniLM into 10 intents, calibrated, and matched to the relevant SOP &mdash; then either drafted with Gemini or sent to an officer with a clear reason. The point isn't drafting; it's <em>knowing when not to draft</em>. LangGraph makes the safety gate structural: escalated emails have no edge to the drafting node.</p>
+        <p class="proj-desc">A triage agent for a tax authority's inbox. Emails are PII-scrubbed, classified by a fine-tuned MiniLM into 10 intents, calibrated, and either drafted with Gemini or escalated to an officer. The point is <em>knowing when not to draft</em> &mdash; in LangGraph, escalated emails have no path to the drafting node.</p>
         <div class="proj-tags">
           <span class="tag">LangGraph</span><span class="tag">Transformers</span><span class="tag">PyTorch</span><span class="tag">Google GenAI SDK</span><span class="tag">scikit-learn</span><span class="tag">Pydantic</span><span class="tag">Streamlit</span><span class="tag">Docker</span>
         </div>
@@ -477,7 +478,7 @@
       <div class="proj-body">
         <span class="proj-kicker">Hackathon · Multi-Agent QA · OpenAI Codex Hackathon 2026</span>
         <h3><a href="https://github.com/donavanyieh/DYWA_prod" target="_blank" rel="noopener">Adaptive Healing Engine<span class="mode team">Team</span></a></h3>
-        <p class="proj-desc">A self-healing loop for web apps. Five LLM-driven browser personas &mdash; flow, pricing, contract, security, data integrity &mdash; click through a shopping app like real users and flag inconsistencies from what they see on screen, with no bug oracle. A verifier agent reviews their evidence, a sandboxed fixing agent patches confirmed bugs and adds regression tests, and a dashboard replays every run's screenshots, decisions and fixes.</p>
+        <p class="proj-desc">A self-healing loop for web apps. Five LLM-driven browser personas &mdash; flow, pricing, contract, security, data integrity &mdash; use a shopping app like real users and flag inconsistencies. A verifier confirms bugs, a sandboxed agent patches them with regression tests, and a dashboard replays every run.</p>
         <div class="proj-tags">
           <span class="tag">OpenAI SDK</span><span class="tag">Playwright</span><span class="tag">FastAPI</span><span class="tag">Pydantic</span><span class="tag">pytest</span><span class="tag">httpx</span>
         </div>
@@ -496,7 +497,7 @@
       <div class="proj-body">
         <span class="proj-kicker">Garena AI Build Challenge 2026 · GenAI · 3D</span>
         <h3><a href="https://github.com/am3lia-low/3D-ywa" target="_blank" rel="noopener">3D-YWA — step into the story you're reading<span class="mode team">Team</span></a></h3>
-        <p class="proj-desc">Turns ordinary prose into a persistent, explorable 3D setting. Each passage produces a <em>patch</em> to the world rather than a fresh scene, so the desk in chapter three is the same desk from chapter one &mdash; moved only because the story moved it. Objects appear only when the text supports them, contradictions are recorded instead of overwritten, and every object carries its provenance. I built the narrative engine that extracts places, objects and relations from the text, and wired it through the shared contract into the React Three Fiber renderer.</p>
+        <p class="proj-desc">Turns prose into a persistent, explorable 3D world. Each passage <em>patches</em> the world instead of making a fresh scene, so the desk in chapter three is the same desk from chapter one. I built the narrative engine that extracts places, objects and relations from the text.</p>
         <div class="proj-tags">
           <span class="tag">OpenAI SDK</span><span class="tag">FastAPI</span><span class="tag">Pydantic</span><span class="tag">React Three Fiber</span><span class="tag">three.js</span><span class="tag">Zod</span><span class="tag">Vite</span><span class="tag">Vitest</span>
         </div>
@@ -514,7 +515,7 @@
       <div class="proj-body">
         <span class="proj-kicker">Agentic AI · RAG</span>
         <h3><a href="https://github.com/am3lia-low/Portfolio-Risk-Analyst-Chatbot" target="_blank" rel="noopener">Portfolio Risk Analyst Chatbot<span class="mode team">Team</span></a></h3>
-        <p class="proj-desc">An AI agent that analyses an investment portfolio end-to-end: it classifies user intent, computes risk metrics, runs a neural-net risk classifier and an LSTM volatility forecast, then grounds its explanation in a 4-base RAG knowledge store &mdash; with a hallucination guard that checks every number before it reaches you.</p>
+        <p class="proj-desc">An agent that analyses an investment portfolio end-to-end: risk metrics, a neural-net risk classifier and an LSTM volatility forecast, explained through a 4-base RAG knowledge store &mdash; with a hallucination guard that checks every number.</p>
         <div class="proj-tags">
           <span class="tag">Google GenAI SDK</span><span class="tag">ChromaDB</span><span class="tag">sentence-transformers</span><span class="tag">rank-bm25</span><span class="tag">PyTorch</span><span class="tag">Streamlit</span><span class="tag">yfinance</span><span class="tag">fredapi</span>
         </div>
@@ -533,7 +534,7 @@
       <div class="proj-body">
         <span class="proj-kicker">Hackathon · Desktop Agent</span>
         <h3><a href="https://github.com/am3lia-low/myko-ai-engineer-hackathon" target="_blank" rel="noopener">Project Myko — desktop cat companion<span class="mode team">Team</span></a></h3>
-        <p class="proj-desc">A small, round, black cat that lives on your desktop. Mostly she just watches quietly &mdash; but when she notices you reading a PDF or replying to email, she shifts into a context copilot, offering a quick summary or draft reply. Two cognition loops, a seven-sprite state machine, persistent memory across sessions, and optional voice. Built in a 3-hour hackathon.</p>
+        <p class="proj-desc">A small black cat that lives on your desktop. She mostly just watches, but when you're reading a PDF or replying to email, she offers a quick summary or draft reply. A seven-sprite state machine, persistent memory and optional voice, built in a 3-hour hackathon.</p>
         <div class="proj-tags">
           <span class="tag">Electron</span><span class="tag">Gemini SDK</span><span class="tag">ElevenLabs API</span><span class="tag">Swift</span><span class="tag">AppleScript</span>
         </div>
@@ -551,7 +552,7 @@
       <div class="proj-body">
         <span class="proj-kicker">GenAI Pipeline · Media</span>
         <h3><a href="https://github.com/am3lia-low/ebook-to-vid-essay" target="_blank" rel="noopener">Ebook → Video Essayist<span class="mode solo">Solo</span></a></h3>
-        <p class="proj-desc">Turns books into opinionated short video essays &mdash; one episode per unit (a law of <em>48 Laws of Power</em>, a chapter of <em>Art of War</em>). A staged pipeline (script → validate → audio → images → video) with a fixed six-beat narrative skeleton, a persona-driven host, and a running tier-list that updates across a season.</p>
+        <p class="proj-desc">Turns books into short, opinionated video essays &mdash; one episode per law or chapter. A staged pipeline from script to video, with a six-beat narrative skeleton, a persona-driven host and a tier list that updates across the season.</p>
         <div class="proj-tags">
           <span class="tag">Google GenAI SDK</span><span class="tag">Anthropic SDK</span><span class="tag">Exa</span><span class="tag">ElevenLabs API</span><span class="tag">Fal</span>
         </div>
@@ -569,7 +570,7 @@
       <div class="proj-body">
         <span class="proj-kicker">GenAI · Full-Stack · For Fun</span>
         <h3><a href="https://github.com/am3lia-low/genai-quiz-platform" target="_blank" rel="noopener">Quizzle — AI quiz platform<span class="mode solo">Solo</span></a></h3>
-        <p class="proj-desc">A BuzzFeed-style quiz platform that generates personality and trivia quizzes on the fly. Discovers trending topics via Google Trends, writes quizzes with Gemini, generates cover art with Pollinations.ai, and tracks aggregate "X% of people got this result" stats.</p>
+        <p class="proj-desc">A BuzzFeed-style quiz platform that generates quizzes on the fly from Google Trends topics, with Gemini-written questions, Pollinations.ai cover art and "X% of people got this result" stats.</p>
         <div class="proj-tags">
           <span class="tag">Google GenAI SDK</span><span class="tag">pytrends</span><span class="tag">Express</span><span class="tag">sql.js</span><span class="tag">Node.js</span>
         </div>
@@ -778,8 +779,10 @@
 </footer>
 
 <script>
-  // duplicate ticker content for seamless loop
+  // duplicate ticker content for seamless loop: each half must cover the screen
   const t = document.getElementById('ticker');
+  const base = t.innerHTML;
+  while (t.scrollWidth < window.innerWidth) t.innerHTML += base;
   t.innerHTML += t.innerHTML;
 
   // scroll reveal
