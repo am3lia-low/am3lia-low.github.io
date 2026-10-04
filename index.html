@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amelia Low — AI/ML Engineer</title>
+<title>Amelia Low — AI Engineer</title>
+<meta name="description" content="Amelia Low — AI engineer building agents, retrieval systems and evaluation harnesses that know their limits.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -94,7 +95,7 @@
   .top-nav a:hover::after { width:100%; }
 
   /* ---------- Hero ---------- */
-  .hero { padding: 90px 0 70px; position: relative; }
+  .hero { padding-top: 90px; padding-bottom: 70px; position: relative; }
   .dateline {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
@@ -158,9 +159,8 @@
     letter-spacing: 0.1em;
     padding: 9px 0;
   }
-  .ticker-track span { padding: 0 22px; display: inline-flex; align-items: center; gap: 10px; }
-  .ticker-track .up { color: #8fc9a8; }
-  .ticker-track .tag { color: var(--gold); }
+  .ticker-track span { padding: 0 18px; display: inline-flex; align-items: center; gap: 10px; }
+  .ticker-track .sep { color: var(--gold); padding: 0; }
   @keyframes scroll { from { transform: translateX(0);} to { transform: translateX(-50%);} }
 
   /* ---------- Section heading ---------- */
@@ -252,7 +252,7 @@
     transition: all 0.2s;
   }
   .proj-side .demo:hover { gap: 10px; filter: brightness(1.08); }
-  .proj-side .demo + .repo { margin-top: 10px; display: block; }
+  .proj-side .demo + .repo { margin-top: 10px; display: table; margin-left: auto; }
 
   /* highlight pill for collab vs solo */
   .mode {
@@ -263,6 +263,35 @@
   }
   .mode.team { background: var(--accent-2); color: var(--paper); }
   .mode.solo { background: transparent; color: var(--accent-2); border: 1px solid var(--accent-2); }
+
+  /* ---------- Compact cards (research / web builds) ---------- */
+  .sec-intro { color: var(--ink-soft); max-width: 62ch; margin: -26px 0 34px; font-style: italic; }
+  .cards {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--ink); border-left: 1px solid var(--line);
+  }
+  .card {
+    padding: 26px 28px 24px;
+    border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 8px;
+    transition: background 0.3s;
+  }
+  .card:hover { background: var(--paper-deep); }
+  .card .proj-kicker { margin-bottom: 0; }
+  .card h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600; font-size: 21px; letter-spacing: -0.02em; line-height: 1.15;
+  }
+  .card:hover h3 { color: var(--accent); }
+  .card p { color: var(--ink-soft); font-size: 16.5px; line-height: 1.55; flex: 1; }
+  .card .mode { margin-left: 8px; }
+  .card-links {
+    display: flex; gap: 18px; flex-wrap: wrap; margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  }
+  .card-links a { border-bottom: 1.5px solid var(--ink); padding-bottom: 1px; transition: all 0.2s; }
+  .card-links a:hover { color: var(--accent); border-color: var(--accent); }
+  .card-links a.live { color: var(--accent); border-color: var(--accent); font-weight: 600; }
 
   /* ---------- About ---------- */
   .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: start; }
@@ -332,13 +361,16 @@
     .proj { grid-template-columns: 54px 1fr; }
     .proj-side { grid-column: 2; text-align: left; margin-top: 8px; }
     .proj-side .repo { margin-top: 4px; }
+    .proj-side .demo + .repo { margin-left: 0; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .proj-idx { font-size: 30px; }
+    .cards { grid-template-columns: 1fr; }
   }
   @media (max-width: 520px) {
     .wrap { padding: 0 20px; }
     .top-inner { padding: 12px 20px; }
-    .hero { padding: 56px 0 50px; }
+    .hero { padding-top: 56px; padding-bottom: 50px; }
+    .card { padding: 22px 20px; }
   }
 </style>
 </head>
@@ -349,6 +381,8 @@
     <div class="top-name">Amelia Low<span class="dot">.</span></div>
     <nav class="top-nav">
       <a href="#work">Work</a>
+      <a href="#research">Research</a>
+      <a href="#web">Web</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -357,31 +391,32 @@
 
 <section class="hero wrap">
   <div class="dateline">
-    <span>Portfolio &mdash; Vol. I</span>
+    <span>Portfolio &mdash; Vol. II</span>
     <span class="rule"></span>
-    <span>AI / ML &middot; Quant Finance</span>
+    <span>AI Engineering &middot; Agents &middot; Evaluation</span>
   </div>
-  <h1>Models that <em>reason</em><br>about markets &amp; meaning.</h1>
-  <p class="sub">Building machine-learning systems where finance meets language &mdash; from Fed-policy retrieval and risk forecasting to the occasional desktop cat. Rigorous where it counts, playful where it pays.</p>
+  <h1>Building AI that<br>knows its <em>limits</em>.</h1>
+  <p class="sub">I build agents, retrieval systems and the evaluation harnesses that keep them honest &mdash; from a triage agent that knows when <em>not</em> to reply, to browser personas that find, verify and fix bugs on their own. Rigorous where it counts, playful where it pays.</p>
   <div class="hero-meta">
-    <div><span class="label">Focus</span>AI Engineering &amp; Quantitative ML</div>
+    <div><span class="label">Focus</span>AI Engineering &amp; Applied ML</div>
     <div><span class="label">Currently</span>NUS Data Science Graduate</div>
     <div><span class="label">Find me</span><a href="https://github.com/am3lia-low" target="_blank" rel="noopener">github.com/am3lia-low</a></div>
   </div>
 </section>
 
-<div class="ticker">
+<div class="ticker" aria-hidden="true">
   <div class="ticker-track" id="ticker">
-    <span class="tag">RAG</span><span class="up">▲ grounded</span>
-    <span class="tag">LSTM</span><span class="up">▲ covariance</span>
-    <span class="tag">FinBERT</span><span>vs RoBERTa</span>
-    <span class="tag">DCC-GARCH</span><span class="up">▲ vol</span>
-    <span class="tag">Gemini</span><span>agents</span>
-    <span class="tag">XGBoost</span><span class="up">▲ Sharpe</span>
-    <span class="tag">Electron</span><span>🐈‍⬛ the cat</span>
-    <span class="tag">Remotion</span><span>video essays</span>
-    <span class="tag">CMVO</span><span class="up">▲ portfolios</span>
-    <span class="tag">FOMC</span><span>hawkish/dovish</span>
+    <span>LangGraph</span><span class="sep">✦</span>
+    <span>Calibration</span><span class="sep">✦</span>
+    <span>Multi-agent QA</span><span class="sep">✦</span>
+    <span>RAG</span><span class="sep">✦</span>
+    <span>Playwright personas</span><span class="sep">✦</span>
+    <span>Prose → 3D worlds</span><span class="sep">✦</span>
+    <span>Fine-tuned MiniLM</span><span class="sep">✦</span>
+    <span>Human eval</span><span class="sep">✦</span>
+    <span>Next.js</span><span class="sep">✦</span>
+    <span>Remotion</span><span class="sep">✦</span>
+    <span>🐈‍⬛ the desktop cat</span><span class="sep">✦</span>
   </div>
 </div>
 
@@ -399,11 +434,68 @@
     <article class="proj reveal">
       <div class="proj-idx">01</div>
       <div class="proj-body">
-        <span class="proj-kicker">Agentic AI · Quant Finance</span>
-        <h3><a href="https://github.com/am3lia-low/Portfolio-Risk-Analyst-Chatbot" target="_blank" rel="noopener">Portfolio Risk Analyst Chatbot<span class="mode team">Team</span></a></h3>
-        <p class="proj-desc">An AI agent that analyses a portfolio end-to-end: it classifies user intent, computes risk metrics (VaR, CVaR, Sharpe, Sortino, beta, HHI), runs a neural-net risk classifier and an LSTM volatility forecast, then grounds its explanation in a 4-base RAG knowledge store — with a hallucination guard that checks every number before it reaches you.</p>
+        <span class="proj-kicker">Agentic AI · Safety · Evaluation</span>
+        <h3><a href="https://github.com/am3lia-low/bojji" target="_blank" rel="noopener">Bojji — calibrated triage for citizen email<span class="mode solo">Solo</span></a></h3>
+        <p class="proj-desc">A triage agent for a tax authority's income-tax inbox. Emails are PII-scrubbed locally, classified by a fine-tuned MiniLM into 10 intents, calibrated, and matched to the relevant SOP &mdash; then either drafted with Gemini or sent to an officer with a clear reason. The point isn't drafting; it's <em>knowing when not to draft</em>. LangGraph makes the safety gate structural: escalated emails have no edge to the drafting node.</p>
         <div class="proj-tags">
-          <span class="tag">Gemini 2.5</span><span class="tag">Streamlit</span><span class="tag">RAG</span><span class="tag">LSTM</span><span class="tag">yfinance</span><span class="tag">Neural Net</span>
+          <span class="tag">LangGraph</span><span class="tag">MiniLM</span><span class="tag">Gemini</span><span class="tag">Calibration</span><span class="tag">Streamlit</span><span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="proj-side">
+        <span class="stat"><b>0 / 456</b> unsafe automations</span>
+        <span class="stat">macro-F1 <b>0.859</b></span>
+        <span class="stat"><b>100%</b> PII scrub recall</span>
+        <a class="demo" href="https://drive.google.com/file/d/1s3FMZnXqy4PFhBYQvYZXpDtTjD4Nuqtz/view?usp=drive_link" target="_blank" rel="noopener">▶ Demo video →</a>
+        <a class="repo" href="https://github.com/am3lia-low/bojji" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="proj reveal">
+      <div class="proj-idx">02</div>
+      <div class="proj-body">
+        <span class="proj-kicker">Hackathon · Multi-Agent QA · OpenAI Codex Hackathon 2026</span>
+        <h3><a href="https://github.com/donavanyieh/DYWA_prod" target="_blank" rel="noopener">Adaptive Healing Engine<span class="mode team">Team</span></a></h3>
+        <p class="proj-desc">A self-healing loop for web apps. Five LLM-driven browser personas &mdash; flow, pricing, contract, security, data integrity &mdash; click through a shopping app like real users and flag inconsistencies from what they see on screen, with no bug oracle. A verifier agent reviews their evidence, a sandboxed fixing agent patches confirmed bugs and adds regression tests, and a dashboard replays every run's screenshots, decisions and fixes.</p>
+        <div class="proj-tags">
+          <span class="tag">GPT-5</span><span class="tag">Playwright</span><span class="tag">FastAPI</span><span class="tag">Agent orchestration</span><span class="tag">pytest</span>
+        </div>
+      </div>
+      <div class="proj-side">
+        <span class="stat"><b>5</b> live personas</span>
+        <span class="stat">find → verify → fix</span>
+        <a class="demo" href="https://drive.google.com/drive/u/3/folders/10td1dnbrjoIwjUTGNdBJRCP0oyTmKSch" target="_blank" rel="noopener">▶ Demo video →</a>
+        <a class="repo" href="https://github.com/donavanyieh/DYWA_prod" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="proj reveal">
+      <div class="proj-idx">03</div>
+      <div class="proj-body">
+        <span class="proj-kicker">Hackathon · GenAI · 3D</span>
+        <h3><a href="https://github.com/am3lia-low/3D-ywa" target="_blank" rel="noopener">3D-YWA — step into the story you're reading<span class="mode team">Team</span></a></h3>
+        <p class="proj-desc">Turns ordinary prose into a persistent, explorable 3D setting. Each passage produces a <em>patch</em> to the world rather than a fresh scene, so the desk in chapter three is the same desk from chapter one &mdash; moved only because the story moved it. Objects appear only when the text supports them, contradictions are recorded instead of overwritten, and every object carries its provenance. I built the narrative engine that extracts places, objects and relations from the text, and wired it through the shared contract into the React Three Fiber renderer.</p>
+        <div class="proj-tags">
+          <span class="tag">GPT-5.6</span><span class="tag">FastAPI</span><span class="tag">React Three Fiber</span><span class="tag">TypeScript</span><span class="tag">JSON Schema</span>
+        </div>
+      </div>
+      <div class="proj-side">
+        <span class="stat"><b>3-stage</b> pipeline</span>
+        <span class="stat">prose → world patch</span>
+        <a class="repo" href="https://github.com/am3lia-low/3D-ywa" target="_blank" rel="noopener">View repo →</a>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="proj reveal">
+      <div class="proj-idx">04</div>
+      <div class="proj-body">
+        <span class="proj-kicker">Agentic AI · RAG</span>
+        <h3><a href="https://github.com/am3lia-low/Portfolio-Risk-Analyst-Chatbot" target="_blank" rel="noopener">Portfolio Risk Analyst Chatbot<span class="mode team">Team</span></a></h3>
+        <p class="proj-desc">An AI agent that analyses an investment portfolio end-to-end: it classifies user intent, computes risk metrics, runs a neural-net risk classifier and an LSTM volatility forecast, then grounds its explanation in a 4-base RAG knowledge store &mdash; with a hallucination guard that checks every number before it reaches you.</p>
+        <div class="proj-tags">
+          <span class="tag">Gemini 2.5</span><span class="tag">Streamlit</span><span class="tag">RAG</span><span class="tag">LSTM</span><span class="tag">Neural Net</span>
         </div>
       </div>
       <div class="proj-side">
@@ -414,67 +506,13 @@
       </div>
     </article>
 
-    <!-- 2 -->
-    <article class="proj reveal">
-      <div class="proj-idx">02</div>
-      <div class="proj-body">
-        <span class="proj-kicker">NLP Research · Central Bank Text</span>
-        <h3><a href="https://github.com/am3lia-low/battle-of-BERTS-FOMC" target="_blank" rel="noopener">Battle of the BERTs<span class="mode solo">Solo</span></a></h3>
-        <p class="proj-desc">FinBERT vs RoBERTa-large on classifying FOMC statements as hawkish, dovish, or neutral. Replicates the <em>Trillion Dollar Words</em> finding that the larger general-purpose model wins — then digs into <em>why</em> financial-domain pre-training underperforms on central-bank language: a register mismatch between corporate finance and Fed-speak.</p>
-        <div class="proj-tags">
-          <span class="tag">FinBERT</span><span class="tag">RoBERTa</span><span class="tag">HuggingFace</span><span class="tag">Transformers</span><span class="tag">Zero-shot</span>
-        </div>
-      </div>
-      <div class="proj-side">
-        <span class="stat">RoBERTa F1 <b>0.71</b></span>
-        <span class="stat">2,476 sentences</span>
-        <a class="repo" href="https://github.com/am3lia-low/battle-of-BERTS-FOMC" target="_blank" rel="noopener">View repo →</a>
-      </div>
-    </article>
-
-    <!-- 3 -->
-    <article class="proj reveal">
-      <div class="proj-idx">03</div>
-      <div class="proj-body">
-        <span class="proj-kicker">Quant ML · Portfolio Optimisation</span>
-        <h3><a href="https://github.com/am3lia-low/optimising-dynamic-crypto-portfolio" target="_blank" rel="noopener">Dynamic Crypto Portfolio Optimiser<span class="mode team">Team</span></a></h3>
-        <p class="proj-desc">A full research pipeline asking how temporal features and correlation structure can optimise a dynamic crypto portfolio. Pairs return-forecasting models (XGBoost variants, ARIMA) with covariance forecasters (DCC-GARCH, LSTM) inside a Constrained Mean-Variance Optimiser, rebalancing weekly across 8 coins and benchmarked against 1/N and statistical MV.</p>
-        <div class="proj-tags">
-          <span class="tag">XGBoost</span><span class="tag">DCC-GARCH</span><span class="tag">LSTM</span><span class="tag">ARIMA</span><span class="tag">Optuna</span><span class="tag">TensorFlow</span>
-        </div>
-      </div>
-      <div class="proj-side">
-        <span class="stat"><b>10</b> portfolios</span>
-        <span class="stat">Sharpe · Sortino · Calmar</span>
-        <a class="repo" href="https://github.com/am3lia-low/optimising-dynamic-crypto-portfolio" target="_blank" rel="noopener">View repo →</a>
-      </div>
-    </article>
-
-    <!-- 4 -->
-    <article class="proj reveal">
-      <div class="proj-idx">04</div>
-      <div class="proj-body">
-        <span class="proj-kicker">RAG · Retrieval Systems</span>
-        <h3><a href="https://github.com/am3lia-low/FOMC-rag-pipeline" target="_blank" rel="noopener">FOMC RAG Pipeline<span class="mode solo">Solo</span></a></h3>
-        <p class="proj-desc">Ask a natural-language question about Fed monetary policy and get a grounded, context-aware answer. Retrieves relevant passages from FOMC minutes and statements (2020–2025) — spanning the COVID response, the historic tightening cycle, and the subsequent rate cuts — and generates answers anchored to the source text.</p>
-        <div class="proj-tags">
-          <span class="tag">RAG</span><span class="tag">Embeddings</span><span class="tag">Vector Search</span><span class="tag">Monetary Policy</span>
-        </div>
-      </div>
-      <div class="proj-side">
-        <span class="stat"><b>2020–2025</b> corpus</span>
-        <span class="stat">grounded answers</span>
-        <a class="repo" href="https://github.com/am3lia-low/FOMC-rag-pipeline" target="_blank" rel="noopener">View repo →</a>
-      </div>
-    </article>
-
     <!-- 5 -->
     <article class="proj reveal">
       <div class="proj-idx">05</div>
       <div class="proj-body">
         <span class="proj-kicker">Hackathon · Desktop Agent</span>
         <h3><a href="https://github.com/am3lia-low/myko-ai-engineer-hackathon" target="_blank" rel="noopener">Project Myko — desktop cat companion<span class="mode team">Team</span></a></h3>
-        <p class="proj-desc">A small, round, black cat that lives on your desktop. Mostly she just watches quietly — but when she notices you reading a PDF or replying to email, she shifts into a context copilot, offering a quick summary or draft reply. Two cognition loops, a seven-sprite state machine, persistent memory across sessions, and optional voice. Built in a 3-hour hackathon.</p>
+        <p class="proj-desc">A small, round, black cat that lives on your desktop. Mostly she just watches quietly &mdash; but when she notices you reading a PDF or replying to email, she shifts into a context copilot, offering a quick summary or draft reply. Two cognition loops, a seven-sprite state machine, persistent memory across sessions, and optional voice. Built in a 3-hour hackathon.</p>
         <div class="proj-tags">
           <span class="tag">Electron</span><span class="tag">Gemini Vision</span><span class="tag">ElevenLabs</span><span class="tag">AppleScript</span><span class="tag">JavaScript</span>
         </div>
@@ -492,7 +530,7 @@
       <div class="proj-body">
         <span class="proj-kicker">GenAI Pipeline · Media</span>
         <h3><a href="https://github.com/am3lia-low/ebook-to-vid-essay" target="_blank" rel="noopener">Ebook → Video Essayist<span class="mode solo">Solo</span></a></h3>
-        <p class="proj-desc">Turns books into opinionated short video essays — one episode per unit (a law of <em>48 Laws of Power</em>, a chapter of <em>Art of War</em>). A four-stage pipeline (script → validate → audio → images → video) with a fixed six-beat narrative skeleton, a persona-driven host, and a running tier-list that updates across a season.</p>
+        <p class="proj-desc">Turns books into opinionated short video essays &mdash; one episode per unit (a law of <em>48 Laws of Power</em>, a chapter of <em>Art of War</em>). A staged pipeline (script → validate → audio → images → video) with a fixed six-beat narrative skeleton, a persona-driven host, and a running tier-list that updates across a season.</p>
         <div class="proj-tags">
           <span class="tag">Gemini</span><span class="tag">OpenAI</span><span class="tag">ElevenLabs</span><span class="tag">Fal</span><span class="tag">Remotion</span><span class="tag">Exa</span>
         </div>
@@ -510,7 +548,7 @@
       <div class="proj-body">
         <span class="proj-kicker">GenAI · Full-Stack · For Fun</span>
         <h3><a href="https://github.com/am3lia-low/genai-quiz-platform" target="_blank" rel="noopener">Quizzle — AI quiz platform<span class="mode solo">Solo</span></a></h3>
-        <p class="proj-desc">A BuzzFeed-style quiz platform that generates personality and trivia quizzes on the fly. Discovers trending topics via Google Trends, writes quizzes with Gemini, generates cover art with Pollinations.ai, and tracks aggregate "X% of people got this result" stats. A Node + Python + SQLite build, made while having fun with GenAI.</p>
+        <p class="proj-desc">A BuzzFeed-style quiz platform that generates personality and trivia quizzes on the fly. Discovers trending topics via Google Trends, writes quizzes with Gemini, generates cover art with Pollinations.ai, and tracks aggregate "X% of people got this result" stats.</p>
         <div class="proj-tags">
           <span class="tag">Gemini</span><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">pytrends</span><span class="tag">Express</span>
         </div>
@@ -525,27 +563,99 @@
   </div>
 </section>
 
-<section class="sec wrap" id="about">
+<section class="sec wrap" id="research">
   <div class="sec-head reveal">
     <span class="sec-num">§ 02</span>
+    <h2 class="sec-title">Research &amp; Experiments</h2>
+    <span class="sec-rule"></span>
+  </div>
+  <p class="sec-intro reveal">Model comparisons, retrieval pipelines and datathon builds &mdash; where I test ideas before they become products.</p>
+
+  <div class="cards reveal">
+    <article class="card">
+      <span class="proj-kicker">RAG · Retrieval</span>
+      <h3>FOMC RAG Pipeline<span class="mode solo">Solo</span></h3>
+      <p>Ask a natural-language question about Fed policy and get an answer grounded in FOMC minutes and statements from 2020&ndash;2025.</p>
+      <div class="card-links"><a href="https://github.com/am3lia-low/FOMC-rag-pipeline" target="_blank" rel="noopener">Repo →</a></div>
+    </article>
+    <article class="card">
+      <span class="proj-kicker">NLP · Model Comparison</span>
+      <h3>Battle of the BERTs<span class="mode solo">Solo</span></h3>
+      <p>FinBERT vs RoBERTa-large on hawkish/dovish stance classification &mdash; and why domain pre-training lost to the bigger general model (F1 0.71).</p>
+      <div class="card-links"><a href="https://github.com/am3lia-low/battle-of-BERTS-FOMC" target="_blank" rel="noopener">Repo →</a></div>
+    </article>
+    <article class="card">
+      <span class="proj-kicker">Datathon · Segmentation · GenAI</span>
+      <h3>NUS Datathon 2026 — Company Intelligence<span class="mode team">Team</span></h3>
+      <p>Segments 8.5k companies with K-Means, flags outliers with Isolation Forest, benchmarks IT spend against peers, and writes executive briefings with a fine-tuned FLAN-T5.</p>
+      <div class="card-links"><a href="https://github.com/am3lia-low/NUS-Datathon-2026-Group-6" target="_blank" rel="noopener">Repo →</a><a href="https://huggingface.co/am3lia-low/nus-datathon-group-6-flan-t5-finetuned-model" target="_blank" rel="noopener">Model →</a></div>
+    </article>
+    <article class="card">
+      <span class="proj-kicker">Time Series · Optimisation</span>
+      <h3>Dynamic Crypto Portfolio<span class="mode team">Team</span></h3>
+      <p>Pairs XGBoost/ARIMA forecasts with DCC-GARCH and LSTM covariance models inside a constrained optimiser, rebalanced weekly across 8 coins.</p>
+      <div class="card-links"><a href="https://github.com/am3lia-low/optimising-dynamic-crypto-portfolio" target="_blank" rel="noopener">Repo →</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec wrap" id="web">
+  <div class="sec-head reveal">
+    <span class="sec-num">§ 03</span>
+    <h2 class="sec-title">Shipped on the Web</h2>
+    <span class="sec-rule"></span>
+  </div>
+  <p class="sec-intro reveal">Dashboards and sites built end-to-end and deployed &mdash; all live, click through.</p>
+
+  <div class="cards reveal">
+    <article class="card">
+      <span class="proj-kicker">Data Viz · Next.js</span>
+      <h3>HDB Million-Dollar Dashboard</h3>
+      <p>In 2017, 46 HDB flats resold for over $1M; in 2025, 1,593 did. An interactive map and timeline of where it's spreading, built on a Python pipeline over data.gov.sg.</p>
+      <div class="card-links"><a class="live" href="https://hdb-million-dollar-dashboard.vercel.app" target="_blank" rel="noopener">◆ Live →</a><a href="https://github.com/am3lia-low/hdb-million-dollar-dashboard" target="_blank" rel="noopener">Repo →</a></div>
+    </article>
+    <article class="card">
+      <span class="proj-kicker">Analytics · Next.js</span>
+      <h3>TikTok Shop Profit Dashboard</h3>
+      <p>A narrative seller dashboard that shows what a shop actually keeps after platform fees, ads and returns &mdash; not just gross sales.</p>
+      <div class="card-links"><a class="live" href="https://tiktok-shop-dashboard-inky.vercel.app" target="_blank" rel="noopener">◆ Live →</a><a href="https://github.com/am3lia-low/tiktok-shop-dashboard" target="_blank" rel="noopener">Repo →</a></div>
+    </article>
+    <article class="card">
+      <span class="proj-kicker">Web · AI Chat Assistant</span>
+      <h3>Tampines Family Dental</h3>
+      <p>A demo site for a fictional neighbourhood clinic, with a Claude-powered assistant that answers questions about services, prices, hours and location.</p>
+      <div class="card-links"><a class="live" href="https://tampines-family-dental.vercel.app" target="_blank" rel="noopener">◆ Live →</a><a href="https://github.com/am3lia-low/tampines-family-dental" target="_blank" rel="noopener">Repo →</a></div>
+    </article>
+    <article class="card">
+      <span class="proj-kicker">Web · Landing Page</span>
+      <h3>Bishan Bright Learners</h3>
+      <p>A warm, parent-friendly landing page for a primary-school tuition centre in Bishan &mdash; English, Maths, Science and Chinese, in small classes.</p>
+      <div class="card-links"><a class="live" href="https://bishan-bright-learners-landing-page.vercel.app" target="_blank" rel="noopener">◆ Live →</a><a href="https://github.com/am3lia-low/Bishan-Bright-Learners" target="_blank" rel="noopener">Repo →</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec wrap" id="about">
+  <div class="sec-head reveal">
+    <span class="sec-num">§ 04</span>
     <h2 class="sec-title">About</h2>
     <span class="sec-rule"></span>
   </div>
   <div class="about-grid">
     <div class="about-content reveal">
-      <p class="about-lead"><span class="drop">I</span> work where machine learning meets markets and language — building systems that don't just predict, but explain themselves.</p>
+      <p class="about-lead"><span class="drop">I</span> build AI systems that are useful, measurable, and honest about what they don't know.</p>
       <div class="about-body" style="margin-top:28px;">
-        <p>Most of my recent work lives at the intersection of <strong>quantitative finance and NLP</strong>: forecasting portfolio risk, classifying central-bank sentiment, retrieving grounded answers from Fed documents, and optimising portfolios with deep covariance models. I care a lot about the unglamorous parts — hallucination guards, reproducibility, cheap-first pipelines, and benchmarks you can actually trust.</p>
-        <p>But I also build for the joy of it. A desktop cat that summarises your PDFs. A quiz generator that runs on trending topics. A pipeline that turns books into video essays. The playful projects keep the rigorous ones honest.</p>
+        <p>Most of my recent work is <strong>agents and the scaffolding around them</strong>: routing that escalates instead of guessing, retrieval that cites its sources, browser personas that test software like real users, and evaluations &mdash; calibration, risk-coverage curves, human review &mdash; that tell you whether any of it actually works. I care a lot about the unglamorous parts: safety gates, reproducibility, and benchmarks you can trust.</p>
+        <p>But I also build for the joy of it. A desktop cat that summarises your PDFs. A quiz generator that runs on trending topics. A pipeline that turns books into video essays. Dashboards and sites I can ship in a weekend. The playful projects keep the rigorous ones honest.</p>
       </div>
     </div>
     <aside class="about-side reveal">
-      <div class="row"><span class="k">Domains</span><span class="v">Quant ML · NLP · RAG</span></div>
-      <div class="row"><span class="k">Languages</span><span class="v">Python · JS · Swift</span></div>
-      <div class="row"><span class="k">ML Stack</span><span class="v">PyTorch · TF · Transformers</span></div>
-      <div class="row"><span class="k">LLM / Agents</span><span class="v">Gemini · OpenAI · RAG</span></div>
-      <div class="row"><span class="k">Quant</span><span class="v">GARCH · ARIMA · XGBoost</span></div>
-      <div class="row"><span class="k">Builds</span><span class="v">Streamlit · Electron · Remotion</span></div>
+      <div class="row"><span class="k">Domains</span><span class="v">Agents · NLP · RAG · Eval</span></div>
+      <div class="row"><span class="k">Languages</span><span class="v">Python · TypeScript · Swift</span></div>
+      <div class="row"><span class="k">LLM / Agents</span><span class="v">LangGraph · Gemini · OpenAI · Claude</span></div>
+      <div class="row"><span class="k">ML Stack</span><span class="v">PyTorch · Transformers · scikit-learn</span></div>
+      <div class="row"><span class="k">Web</span><span class="v">Next.js · Tailwind · Streamlit</span></div>
+      <div class="row"><span class="k">Tooling</span><span class="v">Docker · Playwright · Vercel</span></div>
     </aside>
   </div>
 </section>

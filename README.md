@@ -1,17 +1,17 @@
 # am3lia-low.github.io
 
-My personal portfolio — a single-page site showcasing my work at the intersection of machine learning, NLP, and quantitative finance.
+My personal portfolio — a single-page site showcasing my work in AI engineering: agents, retrieval, evaluation, and the occasional playful build.
 
 **Live site:** https://am3lia-low.github.io
 
 ## About
 
-A static, single-file site (`index.html`) with no build step or dependencies. It features selected projects spanning AI agents, retrieval-augmented generation, central-bank NLP, portfolio optimisation, and a few playful experiments.
+A static, single-file site (`index.html`) with no build step or dependencies. It features selected projects (calibrated triage agents, multi-agent QA, RAG, GenAI pipelines), a research & experiments section, and a set of live web builds.
 
 ## Tech
 
 - Hand-written HTML & CSS — no frameworks, no build tooling
-- Type: Fraunces (display), Newsreader (body), JetBrains Mono (labels), served via Google Fonts
+- Type: Bricolage Grotesque (display), Spectral (body), JetBrains Mono (labels), served via Google Fonts
 - Hosted on GitHub Pages
 
 ## Running locally
